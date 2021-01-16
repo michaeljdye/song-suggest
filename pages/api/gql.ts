@@ -58,28 +58,6 @@ const resolvers = {
         return error.toString
       }
     },
-    categories: async (parent: any, args: any, context) => {
-      const { access_token } = context
-
-      try {        
-        const endpoint = '/browse/categories'
-        
-        const categoryResponse = await fetch(`${process.env.SPOTIFY_API}${endpoint}`, {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        })
-
-        const categoryData = await categoryResponse.json()
-        
-        return categoryData.categories.items
-      } catch (error) {
-        console.log(error)
-        
-        return error.toString
-      }
-    },
     search: async (parent: any, args: any, context) => {
       const { access_token } = context
       const endpoint = '/search'
