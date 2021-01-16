@@ -5,7 +5,6 @@ import { User } from './models/user'
 const typeDefs = gql`
   type Query {
     users: [User!]!
-    categories: [Category!]!
     search: Search!
   }
 
@@ -25,19 +24,6 @@ const typeDefs = gql`
     name: String
     email: String
     password: String
-  }
-
-  type Category {
-    href: String,
-    icons: [Icon]
-    id: String,
-    name: String,
-  }
-
-  type Icon {
-    height: Int
-    url: String
-    width: Int
   }
 
   type Search {
