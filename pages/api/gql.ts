@@ -100,12 +100,6 @@ const resolvers = {
       } catch (error) {
         console.log(error)
       }
-
-      return {
-        href: 'http://test.com',
-        icons: [{height: 12, url: 'http://hello.com', width: 12}],
-        name: 'hello',
-      }
     }
   },
   /* Mutation: {
