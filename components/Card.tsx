@@ -2,17 +2,16 @@ import {FC} from 'react'
 import styled from '@emotion/styled'
 
 type Props = {
-    song: {
-        title: string
-        artist: string
+    category: {
+        id: string
+        name: string
     }
 } 
 
-const Card: FC<Props> = ({song: {title, artist}}) => {
+const Card: FC<Props> = ({category: {id, name}}) => {
     return (
         <CardS background="">
-            <h2>{title}</h2>
-            <h2>{artist}</h2>
+            <h2>{name}</h2>
         </CardS>
     )
 }

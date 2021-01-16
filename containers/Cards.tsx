@@ -2,34 +2,24 @@ import {FC} from 'react'
 import styled from '@emotion/styled'
 import Card from '../components/Card'
 
-const CardContainer: FC = () => {
-    type Song = {
-        id: number
-        title: string
-        artist: string
-    }
 
-    const songs = [
-        {
-            id: 1,
-            title: "Through Struggle",
-            artist: 'As I Lay Dying'
-        },
-        {
-            id: 2,
-            title: "Barbarian",
-            artist: 'August Burns Red'
-        },
-        {
-            id: 3,
-            title: "Rose of Sharon",
-            artist: 'Killswitch Engage'
-        }
-    ]
+type Category = {
+    id: string
+    name: string
+}
+
+type Props = {
+    categories: Category[]
+}
+
+const CardContainer: FC<Props> = ({categories}) => {
+    console.log(categories.forEach(({id}) => {
+        console.log(id)
+    }))
     return (
         <CardsS>
-            {songs.map((song: Song) => (
-                <Card key={song.id} song={song} />
+            {categories.map((category: Category) => (
+                <Card key={category.id} category={category} />
             ))}
         </CardsS>
     )
