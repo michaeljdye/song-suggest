@@ -3,27 +3,24 @@ import styled from '@emotion/styled'
 import Card from '../components/Card'
 
 
-type Category = {
-    id: string
-    name: string
+type Song = {
+    id: number
+    title: string
+    artistId: number,
+    artistName: string
 }
 
 type Props = {
-    categories: Category[]
+    songs: Song[]
 }
 
-const CardContainer: FC<Props> = ({categories}) => {
-    console.log(categories.forEach(({id}) => {
-        console.log(id)
-    }))
-    return (
+const Cards: FC<Props> = ({songs}) => (
         <CardsS>
-            {categories.map((category: Category) => (
-                <Card key={category.id} category={category} />
+            {songs.map((song: Song) => (
+                <Card key={song.id} song={song} />
             ))}
         </CardsS>
     )
-}
 
 const CardsS = styled.div`
     display: flex;
@@ -31,4 +28,4 @@ const CardsS = styled.div`
     justify-content: center;
 `
 
-export default CardContainer
+export default Cards

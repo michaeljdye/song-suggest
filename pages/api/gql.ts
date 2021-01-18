@@ -5,7 +5,7 @@ import { User } from './models/user'
 const typeDefs = gql`
   type Query {
     users: [User!]!
-    search: Search!
+    songs: [Song!]!
   }
 
   # type Mutation {
@@ -26,8 +26,11 @@ const typeDefs = gql`
     password: String
   }
 
-  type Search {
-    href: String
+  type Song {
+    id: Int,
+    title: String,
+    artistId: Int,
+    artistName: String
   }
 `
 
@@ -44,8 +47,8 @@ const resolvers = {
         return error.toString
       }
     },
-    search: async (parent: any, args: any, context) => {
-      const { access_token } = context
+    songs: async (parent: any, args: any, context) => {
+      /* const { access_token } = context
       const endpoint = '/search'
       // const { query } = args
       const query = 'q=killswitch%20engage&type=artist'
@@ -57,13 +60,29 @@ const resolvers = {
             Authorization: `Bearer ${access_token}`
           }
         })
-        const data = await response.json()
+        const data = await response.json() */
 
-        return {href: 'hi'}
+        try {
+          const endpoint = '/a/ra/songs.json?pattern=as%20i%20lay%20dying'
 
-      } catch (error) {
-        console.log(error)
-      }
+          const response = await fetch(`${process.env.SONGSTER_API}${endpoint}`)
+          const data = await response.json()
+
+          const songs = data.map(({id, title, artist: {id: artistId, name: artistName}}) => ({id, title, artistId, artistName}))
+
+          console.log(songs)
+
+          return songs
+          
+        } catch (error) {
+          console.log(error)
+        }
+  
+
+
+      // } catch (error) {
+      //   console.log(error)
+      // }
     }
   },
   /* Mutation: {

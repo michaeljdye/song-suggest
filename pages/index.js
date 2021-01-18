@@ -5,16 +5,18 @@ import Card from '../components/Card'
 import Cards from '../containers/Cards'
 
 const Home = () => {
-  const GET_CATEGORIES = gql`
-    query GetCategories {
-      categories {
+  const GET_SONGS = gql`
+    query GetSongs {
+      songs {
         id
-        name
+        title
+        artistId
+        artistName
       }
     }
   `
 
-  const { loading, error, data } = useQuery(GET_CATEGORIES)
+  const { loading, error, data } = useQuery(GET_SONGS)
 
   if (loading) return <div>Loading...</div>
   if (error) {
@@ -22,11 +24,11 @@ const Home = () => {
     return <div>Error...</div>
   }
 
-  const { categories } = data
+  const { songs } = data
 
   return (
     <Layout>
-      <Cards categories={categories} />
+      <Cards songs={songs} />
     </Layout>
   )
 }

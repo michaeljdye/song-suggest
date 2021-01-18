@@ -2,16 +2,20 @@ import {FC} from 'react'
 import styled from '@emotion/styled'
 
 type Props = {
-    category: {
-        id: string
-        name: string
+    song: {
+        id: number
+        title: string
+        artistId: number
+        artistName: string
     }
 } 
 
-const Card: FC<Props> = ({category: {id, name}}) => {
+const Card: FC<Props> = ({song: {id, title, artistId, artistName}}) => {
     return (
         <CardS background="">
-            <h2>{name}</h2>
+            <h2>{title}</h2>
+            <p>{artistName}</p>
+            <a href={`http://www.songsterr.com/a/wa/song?id=${id}`} target="_blank" rel="noreferrer noopener">View Tab</a>
         </CardS>
     )
 }
