@@ -14,17 +14,19 @@ type Props = {
     songs: Song[]
 }
 
-const Cards: FC<Props> = ({songs}) => (
+const Cards: FC<Props> = ({songs}) => {
+    // console.log(songs)
+    return (
         <CardsS>
             {songs.map((song: Song) => (
                 <Card key={song.id} song={song} />
             ))}
         </CardsS>
-    )
+    )}
 
 const CardsS = styled.div`
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
 `
 

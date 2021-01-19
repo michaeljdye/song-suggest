@@ -5,7 +5,7 @@ import { User } from './models/user'
 const typeDefs = gql`
   type Query {
     users: [User!]!
-    songs: [Song!]!
+    songs(artist: String): [Song!]!
   }
 
   # type Mutation {
@@ -62,15 +62,17 @@ const resolvers = {
         })
         const data = await response.json() */
 
+        const { artist } = args
+
+        if (!artist) return null
+
         try {
-          const endpoint = '/a/ra/songs.json?pattern=as%20i%20lay%20dying'
+          const endpoint = `/a/ra/songs.json?pattern=${artist.toLowerCase()}`
 
           const response = await fetch(`${process.env.SONGSTER_API}${endpoint}`)
           const data = await response.json()
 
           const songs = data.map(({id, title, artist: {id: artistId, name: artistName}}) => ({id, title, artistId, artistName}))
-
-          console.log(songs)
 
           return songs
           

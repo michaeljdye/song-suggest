@@ -28,11 +28,23 @@ const CardS = styled.div<CardSProps>`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     background: url(${({background = ''}) => background})  no-repeat center center / cover;
-    width: 33.33%;
-    height: 400px;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.6);
+    padding: 20px 0;
+
+    * {
+        margin-left: 40px;
+    }
+
+    a {
+        background: rebeccapurple;
+        width: fit-content;
+        border: 1px solid #000;
+        border-radius: 3px;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: white;
+    }
 `
 
 export default Card
