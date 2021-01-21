@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { gql, useQuery, useLazyQuery } from '@apollo/client'
+import styled from '@emotion/styled'
 import Layout from '../components/Layout'
 import Card from '../components/Card'
 import Cards from '../containers/Cards'
@@ -27,10 +28,20 @@ const Home = () => {
 
   return (
     <Layout>
-      <SearchForm search={search} setQuery={setQuery} query={query} />
-      {data && <Cards songs={data.songs} />}
+      <HomeS>
+        <SearchForm search={search} setQuery={setQuery} query={query} />
+        {data && <Cards songs={data.songs} />}
+      </HomeS>
     </Layout>
   )
 }
+
+const HomeS = styled.div`
+  form {
+    display: block;
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+`
 
 export default Home

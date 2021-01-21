@@ -29,6 +29,10 @@ const Layout: FC = ({ children }) => {
             margin: 0;
             padding: 0;
           }
+
+          a {
+            text-decoration: none;
+          }
         `}
       />
       <Header />

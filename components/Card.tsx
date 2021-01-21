@@ -13,9 +13,11 @@ type Props = {
 const Card: FC<Props> = ({song: {id, title, artistId, artistName}}) => {
     return (
         <CardS background="">
-            <h2>{title}</h2>
-            <p>{artistName}</p>
-            <a href={`http://www.songsterr.com/a/wa/song?id=${id}`} target="_blank" rel="noreferrer noopener">View Tab</a>
+            <div>
+                <h2>{title}</h2>
+                <p>{artistName}</p>
+                <a href={`http://www.songsterr.com/a/wa/song?id=${id}`} target="_blank" rel="noreferrer noopener">View Tab</a>
+            </div>
         </CardS>
     )
 }
@@ -32,18 +34,19 @@ const CardS = styled.div<CardSProps>`
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.6);
     padding: 20px 0;
 
-    * {
-        margin-left: 40px;
+    > div {
+        margin-left: 2.5rem;
     }
 
     a {
-        background: rebeccapurple;
+        display: block;
+        background: var(--colorPrimary);
         width: fit-content;
-        border: 1px solid #000;
+        margin: 0.5rem 0 0 0;
+        padding: 0.4rem 0.7rem;
         border-radius: 3px;
-        padding: 5px 10px;
         text-decoration: none;
-        color: white;
+        color: var(--colorDark);
     }
 `
 
