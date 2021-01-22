@@ -8,10 +8,9 @@ const typeDefs = gql`
     songs(artist: String): [Song!]!
   }
 
-  # type Mutation {
-  #   addArtist(artist: ArtistInput): Artist!
-  #   updateArtist(artist: ArtistInput): Artist!
-  # }
+  type Mutation {
+    addUser(user: UserInput): User!
+  }
 
   type User {
     id: Int
@@ -20,7 +19,6 @@ const typeDefs = gql`
   }
 
   input UserInput {
-    id: Int
     name: String
     email: String
     password: String
@@ -87,41 +85,25 @@ const resolvers = {
       // }
     }
   },
-  /* Mutation: {
-    updateArtist: async (
+  Mutation: {
+    addUser: async (
       parent: any,
-      { artist: { id, name, genre } },
+      { user },
       context: any
     ) => {
+      
       try {
-        const response = await client.query({
-          text: 'UPDATE artists SET name=$1, genre=$2 WHERE id = $3',
-          values: [name, genre, id],
-        })
-        return { id: 1, name: 'hi', genre: 'yo' }
+        const data = await User.create(user)
+        delete data['password']
+        delete data['updatedAt']
+        delete data['createdAt']
+
+        return data.toJSON()
       } catch (error) {
         return error.toString()
       }
     },
-    addArtist: async (
-      parent: any,
-      { artist: { name, genre } },
-      context: any
-    ) => {
-      try {
-        const response = await client.query({
-          text: 'INSERT INTO artists(name, genre) VALUES($1, $2) RETURNING *',
-          values: [name, genre],
-        })
-
-        const [artist] = response.rows
-
-        return artist
-      } catch (error) {
-        return error.toString()
-      }
-    },
-  }, */
+  },
 }
 
 const apolloServer = new ApolloServer({
