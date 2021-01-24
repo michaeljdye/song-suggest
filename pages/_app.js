@@ -1,6 +1,7 @@
 import { ApolloProvider } from '@apollo/client'
 import client from '../utils/apolloClient'
 import Layout from '../components/Layout'
+import '../styles/index.css'
 
 function MyApp({ Component, pageProps }) {
   return (

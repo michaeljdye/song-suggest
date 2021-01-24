@@ -27,12 +27,10 @@ const Home = () => {
   })
 
   return (
-    <Layout>
-      <HomeS>
-        <SearchForm search={search} setQuery={setQuery} query={query} />
-        {data && <Cards songs={data.songs} />}
-      </HomeS>
-    </Layout>
+    <HomeS>
+      <SearchForm search={search} setQuery={setQuery} query={query} />
+      {data && <Cards songs={data.songs} />}
+    </HomeS>
   )
 }
 

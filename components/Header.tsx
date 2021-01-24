@@ -8,7 +8,7 @@ const Header: FC = () => {
     <nav>
       <ul>
         <li><a href="/profile">Profile</a></li>
-        <li><a href="/sign-in">Sign In</a></li>
+        <li><a href="/sign-in">Log In</a></li>
         <li><a href="/sign-up">Sign Up</a></li>
       </ul>
     </nav>
